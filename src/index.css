@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-base: var(--bg-color);
+  --color-surface: var(--surface-color);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent-color);
+}
+
+:root {
+  --bg-color: #f1f5f9;
+  --surface-color: rgba(255, 255, 255, 0.6);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --accent-color: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.4);
+  
+  --color-base: var(--bg-color);
+  --color-surface: var(--surface-color);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent-color);
+  --color-border: rgba(255, 255, 255, 0.8);
+  
+  --shadow-light: rgba(255, 255, 255, 0.9);
+  --shadow-dark: rgba(148, 163, 184, 0.3);
+  
+  --neo-flat: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+  --neo-shallow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+  --neo-inset: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+  
+  --glass-bg: rgba(255, 255, 255, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+.dark {
+  --bg-color: #020617;
+  --surface-color: rgba(15, 23, 42, 0.5);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-color: #60a5fa;
+  --accent-glow: rgba(59, 130, 246, 0.3);
+
+  --color-base: var(--bg-color);
+  --color-surface: var(--surface-color);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent-color);
+  --color-border: rgba(255, 255, 255, 0.1);
+  
+  --shadow-light: rgba(255, 255, 255, 0.02);
+  --shadow-dark: rgba(0, 0, 0, 0.6);
+  
+  --glass-bg: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.neo-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--neo-flat), 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  border-radius: 32px;
+  position: relative;
+  z-index: 10;
+}
+
+.neo-element {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--neo-shallow);
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-element::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+.dark .neo-element::before {
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+}
+
+.neo-element > * {
+  position: relative;
+  z-index: 1;
+}
+
+.neo-element:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--neo-flat), 0 15px 30px -5px var(--accent-glow);
+  border-color: var(--accent-color);
+}
+
+.neo-pressed {
+  background: rgba(0,0,0,0.04);
+  box-shadow: var(--neo-inset);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dark .neo-pressed {
+  background: rgba(255,255,255,0.02);
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.title-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.stylish-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.stylish-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.stylish-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+  opacity: 0.5;
+}
+.stylish-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #3b82f6, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: textShine 6s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+@keyframes textShine {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  opacity: 0.8;
+  animation: float 20s infinite ease-in-out alternate;
+}
+.dark .bg-orb {
+  opacity: 0.35;
+  filter: blur(130px);
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(5%, -10%) scale(1.1) rotate(10deg); }
+  66% { transform: translate(-5%, 10%) scale(0.9) rotate(-10deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+  body, .print-mode-wrapper {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: var(--bg-color) !important;
+    overflow: visible !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page {
+    page-break-after: always;
+    break-after: page;
+    height: 100vh !important;
+    width: 100vw !important;
+    overflow: hidden !important;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
